@@ -1,5 +1,6 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.UnsupportedMathOperationException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,12 +14,12 @@ public class MathController {
             @PathVariable(value = "numberOne") String numberOne, // não é obrigatório a configuração do value, mas assim espera-se que o PathVariable tenha o mesmo nome do parâmetro da função
             @PathVariable String numberTwo
     ) {
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new IllegalArgumentException();
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
     }
 
     private Double convertToDouble(String strNumber) {
-        if (strNumber == null || strNumber.isEmpty()) throw new IllegalArgumentException();
+        if (strNumber == null || strNumber.isEmpty()) throw new UnsupportedMathOperationException("Please set a numeric value!");
         String number = strNumber.replace(",", ".");
 
         return Double.parseDouble(number);
