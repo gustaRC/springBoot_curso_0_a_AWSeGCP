@@ -10,11 +10,12 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class GreetingController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+    private static final String template = "Hello, %s!"; // template da mensagem de exibição
+    private final AtomicLong counter = new AtomicLong(); // geração de um número Long
 
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+        // NÃO é obrigatório passar a configuração do value, mas assim espera-se que o nome do parâmetro da função seja o mesmo do requestParam
         return  new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 }
