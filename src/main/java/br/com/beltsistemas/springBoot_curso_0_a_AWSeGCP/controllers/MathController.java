@@ -1,6 +1,7 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.UnsupportedMathOperationException;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.MathService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,13 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/math") //rota padrão do MathController (todo endpoint contido aqui terá previamente o: '/math/...')
 public class MathController {
 
+    @Autowired
+    private MathService mathService;
+
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     public Double sum(
             @PathVariable(value = "numberOne") String numberOne, // não é obrigatório a configuração do value, mas assim espera-se que o PathVariable tenha o mesmo nome do parâmetro da função
             @PathVariable String numberTwo
     ) {
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return mathService.sum(numberOne, numberTwo);
     }
 
     @RequestMapping("/subtraction/{numberOne}/{numberTwo}")
@@ -23,8 +26,7 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) {
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
-        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+        return mathService.subtraction(numberOne, numberTwo);
     }
 
     @RequestMapping("/multiplication/{numberOne}/{numberTwo}")
@@ -32,8 +34,7 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) {
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
-        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+        return mathService.multiplication(numberOne, numberTwo);
     }
 
     @RequestMapping("/division/{numberOne}/{numberTwo}")
@@ -41,8 +42,7 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) {
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
-        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+        return mathService.division(numberOne, numberTwo);
     }
 
     @RequestMapping("/average/{numberOne}/{numberTwo}")
@@ -50,29 +50,13 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) {
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
-        return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2.0;
+        return mathService.average(numberOne, numberTwo);
     }
 
     @RequestMapping("/square-root/{numberOne}")
     public Double squareRoot(
             @PathVariable String numberOne
     ) {
-        if(!isNumeric(numberOne)) throw new UnsupportedMathOperationException("Please set a numeric value!");
-        return Math.sqrt(convertToDouble(numberOne));
-    }
-
-    private Double convertToDouble(String strNumber) {
-        if (strNumber == null || strNumber.isEmpty()) throw new UnsupportedMathOperationException("Please set a numeric value!");
-        String number = strNumber.replace(",", ".");
-
-        return Double.parseDouble(number);
-    }
-
-    private boolean isNumeric(String strNumber) {
-        if (strNumber == null || strNumber.isEmpty()) return false;
-        String number = strNumber.replace(",", ".");
-
-        return number.matches("[-+]?[0-9]*\\.?[0-9]+"); //regex para validar se é um número válido (positivo ou negativo, inteiro ou decimal)
+        return mathService.squareRoot(numberOne);
     }
 }
