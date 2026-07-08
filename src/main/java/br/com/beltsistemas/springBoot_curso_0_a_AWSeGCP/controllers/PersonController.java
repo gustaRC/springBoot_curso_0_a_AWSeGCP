@@ -1,0 +1,29 @@
+package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
+
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/person")
+public class PersonController {
+
+    @Autowired
+    private PersonService service; // == private PersonService service = new PersonService();
+
+    @RequestMapping(
+            value = "/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Person findById(
+            @PathVariable String id
+    ) {
+        return service.findById(Long.parseLong(id));
+    }
+}
