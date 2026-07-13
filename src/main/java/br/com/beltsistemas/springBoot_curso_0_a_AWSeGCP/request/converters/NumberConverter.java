@@ -1,11 +1,11 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.request.converters;
 
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.UnsupportedMathOperationException;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFoundException;
 
 public class NumberConverter {
 
     public static Double convertToDouble(String strNumber) {
-        if (strNumber == null || strNumber.isEmpty()) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        if (strNumber == null || strNumber.isEmpty()) throw new ResourceNotFoundException("Please set a numeric value!");
         String number = strNumber.replace(",", ".");
 
         return Double.parseDouble(number);
@@ -19,10 +19,10 @@ public class NumberConverter {
     }
 
     public static void notNumberError(String numberOne) {
-        if(!isNumeric(numberOne)) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        if(!isNumeric(numberOne)) throw new ResourceNotFoundException("Please set a numeric value!");
     }
 
     public static void notNumbersError(String numberOne, String numberTwo) {
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedMathOperationException("Please set a numeric value!");
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new ResourceNotFoundException("Please set a numeric value!");
     }
 }
