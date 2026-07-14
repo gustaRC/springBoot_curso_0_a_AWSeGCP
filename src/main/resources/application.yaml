@@ -7,11 +7,15 @@ spring:
     username: root
     password: Gu021204$
   jpa:
+    show-sql: true
+    format_sql: true
+    open-in-view: false
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-      show-sql: true
-      format_sql: true
-      open-in-view: false
+        #dialect: org.hibernate.dialect.MySQLDialect
+logging:
+  level:
+    #root: WARN
+    br.com.beltsistemas: DEBUG

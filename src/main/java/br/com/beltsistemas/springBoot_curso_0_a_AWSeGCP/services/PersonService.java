@@ -3,12 +3,13 @@ package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFoundException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.repository.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
 
 @Service // utilizado para tratamentos de regras de negócio separadamente do Controller (função definida somente para controle de Rotas)
 public class PersonService {
@@ -17,7 +18,7 @@ public class PersonService {
     private PersonRepository repository;
 
     private final AtomicLong counter = new AtomicLong();
-    private Logger logger = Logger.getLogger(PersonService.class.getName()); //aprofundaremos no Logger mais para frente
+    private Logger logger = LoggerFactory.getLogger(PersonService.class.getName()); //aprofundaremos no Logger mais para frente
 
     public List<Person> findAll() {
         logger.info("Finding all people!");
