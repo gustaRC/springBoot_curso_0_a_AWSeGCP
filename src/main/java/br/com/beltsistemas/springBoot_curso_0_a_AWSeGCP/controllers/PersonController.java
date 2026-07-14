@@ -4,6 +4,7 @@ import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,20 +16,14 @@ public class PersonController {
     @Autowired
     private PersonService service; // == private PersonService service = new PersonService();
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            //produces -> dados ENVIADOS DA a API (response)
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE /* produces -> dados ENVIADOS DA a API (response) */ )
     public List<Person> findAll() {
         return service.findAll();
     }
 
-    @RequestMapping(
+    @GetMapping(
             value = "/{id}",
-            method = RequestMethod.GET,
-            //produces -> dados ENVIADOS DA a API (response)
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = MediaType.APPLICATION_JSON_VALUE /* produces -> dados ENVIADOS DA a API (response) */
     )
     public Person findById(
             @PathVariable String id //@PathVariable indica a necessidade de preenchimento do caminho da URL: '/person/{id}'
@@ -36,8 +31,7 @@ public class PersonController {
         return service.findById(Long.parseLong(id));
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST,
+    @PostMapping(
             //consumes -> dados ENVIADOS PARA a API (request)
             consumes = MediaType.APPLICATION_JSON_VALUE, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
@@ -49,28 +43,27 @@ public class PersonController {
         return service.create(person);
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
+    @PutMapping(
             //consumes -> dados ENVIADOS PARA a API (request)
             consumes = MediaType.APPLICATION_JSON_VALUE, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
             produces = MediaType.APPLICATION_JSON_VALUE  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
     public Person update(
-            @RequestBody Person person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
+            @RequestBody Person person // @RequestBody para indicar a necessidade de preenchimento no Body da aplicação
     ) {
         return service.update(person);
     }
 
-    @RequestMapping(
+    @DeleteMapping(
             value = "/{id}",
-            method = RequestMethod.DELETE,
             //produces -> dados ENVIADOS DA a API (response)
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void delete(
+    public ResponseEntity<?> delete(
             @PathVariable String id
     ) {
         service.delete(Long.parseLong(id));
+        return ResponseEntity.noContent().build(); // irá retornar um response de sucesso com status 204 (No Content)
     }
 }
