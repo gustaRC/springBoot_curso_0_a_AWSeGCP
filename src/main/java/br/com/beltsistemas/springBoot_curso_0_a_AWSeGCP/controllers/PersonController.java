@@ -1,5 +1,6 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.PersonDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class PersonController {
     private PersonService service; // == private PersonService service = new PersonService();
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE /* produces -> dados ENVIADOS DA a API (response) */ )
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         return service.findAll();
     }
 
@@ -25,7 +26,7 @@ public class PersonController {
             value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE /* produces -> dados ENVIADOS DA a API (response) */
     )
-    public Person findById(
+    public PersonDTO findById(
             @PathVariable String id //@PathVariable indica a necessidade de preenchimento do caminho da URL: '/person/{id}'
     ) {
         return service.findById(Long.parseLong(id));
@@ -37,8 +38,8 @@ public class PersonController {
             //produces -> dados ENVIADOS DA a API (response)
             produces = MediaType.APPLICATION_JSON_VALUE  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
-    public Person create(
-            @RequestBody Person person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
+    public PersonDTO create(
+            @RequestBody PersonDTO person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
     ) {
         return service.create(person);
     }
@@ -49,8 +50,8 @@ public class PersonController {
             //produces -> dados ENVIADOS DA a API (response)
             produces = MediaType.APPLICATION_JSON_VALUE  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
-    public Person update(
-            @RequestBody Person person // @RequestBody para indicar a necessidade de preenchimento no Body da aplicação
+    public PersonDTO update(
+            @RequestBody PersonDTO person // @RequestBody para indicar a necessidade de preenchimento no Body da aplicação
     ) {
         return service.update(person);
     }
