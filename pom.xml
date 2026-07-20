@@ -49,6 +49,16 @@
 			<groupId>com.github.dozermapper</groupId>
 			<artifactId>dozer-core</artifactId>
 			<version>${dozer.version}</version>
+			<!-- DOZERMAPPER foi depreciado, estudar o MapStruct -->
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+			<!-- FLYWAY MIGRATIONS exige duas importações: uma do core e outra referente a linguagem utilizada no DB (MySQL, PostgreSQL, Oracle, etc) -->
 		</dependency>
 	</dependencies>
 
