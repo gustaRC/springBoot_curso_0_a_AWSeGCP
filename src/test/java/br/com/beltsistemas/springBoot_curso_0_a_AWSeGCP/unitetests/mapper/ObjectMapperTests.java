@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unitetests.mapper.mocks.MockPerson;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.PersonDTO;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

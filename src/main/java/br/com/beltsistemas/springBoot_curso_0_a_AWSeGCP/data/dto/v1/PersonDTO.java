@@ -1,6 +1,4 @@
-package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto;
-
-import jakarta.persistence.*;
+package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1;
 
 import java.io.Serializable;
 import java.util.Objects;

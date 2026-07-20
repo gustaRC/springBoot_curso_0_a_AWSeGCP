@@ -3,7 +3,7 @@ package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unitetests.mapper.mocks
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.PersonDTO;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 
 public class MockPerson {

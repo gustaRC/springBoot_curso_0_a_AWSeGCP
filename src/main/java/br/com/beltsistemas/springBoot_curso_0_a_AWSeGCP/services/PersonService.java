@@ -1,7 +1,9 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
 
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.PersonDTO;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v2.PersonDTOV2;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFoundException;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.custom.PersonMapper;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -20,6 +22,9 @@ public class PersonService {
 
     @Autowired
     private PersonRepository repository;
+
+    @Autowired
+    private PersonMapper converter;
 
     private final AtomicLong counter = new AtomicLong();
     private Logger logger = LoggerFactory.getLogger(PersonService.class.getName()); //aprofundaremos no Logger mais para frente
@@ -47,8 +52,16 @@ public class PersonService {
 
 //      Person -> PersonDTO.class
         return parseObject(repository.save(entity), PersonDTO.class);
+    }
 
+    public PersonDTOV2 createV2(PersonDTOV2 person) {
+        logger.info("Creating one person!");
 
+//      PersonDTOV2 -> Person.class
+        Person entity = parseObject(person, Person.class);
+
+//      Person -> PersonDTOV2.class
+        return converter.convertEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person) {

@@ -1,7 +1,7 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.PersonDTO;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v2.PersonDTOV2;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -42,6 +42,19 @@ public class PersonController {
             @RequestBody PersonDTO person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
     ) {
         return service.create(person);
+    }
+
+    @PostMapping(
+            value = "/v2",
+            //consumes -> dados ENVIADOS PARA a API (request)
+            consumes = MediaType.APPLICATION_JSON_VALUE, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            //produces -> dados ENVIADOS DA a API (response)
+            produces = MediaType.APPLICATION_JSON_VALUE  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+    )
+    public PersonDTOV2 createV2(
+            @RequestBody PersonDTOV2 person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
+    ) {
+        return service.createV2(person);
     }
 
     @PutMapping(
