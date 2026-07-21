@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repositório do Projeto no Github - Guia Completo</title>
+  <link rel="icon" href="https://github.com/leandrocgsi/blog-images/blob/main/logos/favicon-16x16-1.png?raw=true" sizes="32x32" />
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; color:#1f2937; line-height:1.7; }
+    header { background:#363636; border-bottom:1px solid #e5e7eb; }
+    .header-content { max-width:800px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:20px; }
+    .logo img, .stars img { max-width:200px; height:auto; }
+    .main-nav { background:#fff; border-bottom:2px solid #e5e7eb; box-shadow:0 2px 4px rgba(0,0,0,0.05); position:sticky; top:0; z-index:100; }
+    .nav-content { max-width:800px; margin:0 auto; display:flex; justify-content:space-around; flex-wrap:wrap; padding:0; }
+    .nav-link { display:block; padding:15px 10px; text-decoration:none; color:#1f2937; font-weight:500; font-size:14px; transition:all 0.3s; border-bottom:3px solid transparent; text-align:center; }
+    .nav-link:hover { color:#2563eb; border-bottom-color:#2563eb; background:#f9fafb; }
+    main { max-width:800px; margin:40px auto; padding:30px 20px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    h1 { color:#111827; font-size:28px; margin-bottom:20px; text-align:center; }
+    h2 { margin-top:40px; color:#111827; }
+    h3 { margin-top:25px; color:#111827; font-size:18px; }
+    h4 { margin-top:15px; color:#111827; font-size:16px; }
+    p { margin-bottom:18px; text-align:justify; }
+    ul, ol { margin:16px 0 16px 24px; }
+    li { margin-bottom:10px; }
+    .highlight { background:#f3f4f6; padding:15px; border-left:4px solid #16a34a; border-radius:4px; margin:20px 0; }
+    .warning { background:#fef3c7; padding:15px; border-left:4px solid #f59e0b; border-radius:4px; margin:20px 0; }
+    .info { background:#dbeafe; padding:15px; border-left:4px solid #2563eb; border-radius:4px; margin:20px 0; }
+    .step-box { background:#f0fdf4; padding:20px; border:3px solid #16a34a; border-radius:8px; margin:25px 0; }
+    .step-box h4 { margin-top:0; color:#15803d; }
+    .code-block { background:#1f2937; color:#f9fafb; padding:20px; border-radius:6px; overflow-x:auto; font-family:'Courier New', monospace; font-size:14px; line-height:1.6; margin:20px 0; }
+    .code-block code { display:block; white-space:pre; }
+    .link-button { display:inline-block; margin:12px 8px 0 0; padding:10px 20px; background:#2563eb; color:#fff; border-radius:6px; text-decoration:none; font-size:15px; transition:background .3s; }
+    .link-button:hover { background:#1d4ed8; }
+    .course-banner { text-align:center; margin:40px 0 20px 0; }
+    .course-banner img { border-radius:8px; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition:transform .3s; max-width:100%; height:auto; }
+    .course-banner img:hover { transform:scale(1.02); }
+    .repo-box { background:#f0fdf4; padding:20px; border:3px solid #16a34a; border-radius:8px; margin:30px 0; text-align:center; }
+    .repo-box h3 { margin-top:0; color:#15803d; }
+    .repo-link { display:inline-block; margin:15px 10px; padding:15px 30px; background:#16a34a; color:#fff; border-radius:8px; text-decoration:none; font-size:18px; font-weight:bold; transition:background .3s; }
+    .repo-link:hover { background:#15803d; }
+    .video-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:100%; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:25px 0; }
+    .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; }
+    footer { text-align:center; padding:40px 20px; background:#fff; margin-top:60px; border-top:1px solid #e5e7eb; }
+    .social-icons { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; padding-top:30px; }
+    .social-icons a { width:52px; height:52px; background:#fff; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; transition:transform .2s; text-decoration:none; }
+    .social-icons a:hover { transform:translateY(-2px); }
+    .social-icons img { max-width:36px; max-height:36px; }
+    #copyright-text { text-align:center; margin-top:25px; color:#4b5563; font-size:14px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <div class="logo"><a href="https://pub.erudio.com.br/kr/premium_courses"><img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/cropped-teste_logo-2.png?raw=true" alt="Erudio Training"></a></div>
+    <div class="stars"><img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/five_stars.png?raw=true" alt="Cinco Estrelas"></div>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <div class="nav-content">
+    <a href="#repositorio" class="nav-link">Repositório</a>
+    <a href="#git-basico" class="nav-link">Git Básico</a>
+    <a href="#intellij" class="nav-link">IntelliJ</a>
+    <a href="#videos" class="nav-link">Vídeos</a>
+    <a href="#ambiente" class="nav-link">Ambiente</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Repositório do Projeto no Github - Guia Completo</h1>
+
+  <p id="repositorio">Antes de começarmos a escrever código e implementar testes automatizados, precisamos ter acesso ao repositório do projeto e configurar nosso ambiente de desenvolvimento corretamente. Este guia vai te conduzir por todos os passos necessários, desde clonar o repositório até fazer suas primeiras contribuições usando Git e IntelliJ IDEA.</p>
+
+  <div class="repo-box">
+    <h3>📦 Acesso ao Repositório do Curso</h3>
+    <p>Todo o código-fonte, exemplos práticos e material complementar está disponível no GitHub:</p>
+    <a href="https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio" target="_blank" rel="noopener" class="repo-link">Acessar Repositório</a>
+    <a href="https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio/archive/refs/heads/main.zip" target="_blank" rel="noopener" class="repo-link">Baixar ZIP</a>
+  </div>
+
+  <h2 id="git-basico">Instruções Básicas de Git</h2>
+
+  <p>Git é o sistema de controle de versão mais utilizado no mundo. Ele permite que você rastreie mudanças no código, colabore com outros desenvolvedores e mantenha um histórico completo de todas as alterações feitas em um projeto. Se você ainda não domina Git, não se preocupe - vamos cobrir os comandos essenciais que você precisa conhecer.</p>
+
+  <h3>1. Clonando o Repositório na Sua Máquina</h3>
+
+  <p>Clonar um repositório significa fazer uma cópia completa dele (incluindo todo o histórico de commits) na sua máquina local. Esse é sempre o primeiro passo para começar a trabalhar em um projeto Git.</p>
+
+  <div class="step-box">
+    <h4>🔽 Como Clonar o Repositório</h4>
+    <p>Abra o terminal (Linux/macOS) ou Git Bash (Windows) e navegue até a pasta onde você deseja armazenar o projeto. Em seguida, execute:</p>
+  </div>
+
+  <div class="code-block"><code>git clone https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio.git</code></div>
+
+  <p>Esse comando irá criar uma nova pasta chamada <code>automated-tests-with-java-erudio</code> contendo todo o conteúdo do repositório. Você verá uma saída similar a esta:</p>
+
+  <div class="code-block"><code>Cloning into 'automated-tests-with-java-erudio'...
+remote: Enumerating objects: 1543, done.
+remote: Counting objects: 100% (1543/1543), done.
+remote: Compressing objects: 100% (892/892), done.
+remote: Total 1543 (delta 456), reused 1401 (delta 314)
+Receiving objects: 100% (1543/1543), 2.45 MiB | 3.21 MiB/s, done.
+Resolving deltas: 100% (456/456), done.</code></div>
+
+  <div class="info">
+    <p><strong>💡 Dica:</strong> Se você não tem Git instalado na sua máquina, baixe-o em <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com/downloads</a>. A instalação é simples e rápida em qualquer sistema operacional.</p>
+  </div>
+
+  <h3>2. Importando o Projeto na IntelliJ IDEA</h3>
+
+  <p>Depois de clonar o repositório, o próximo passo é importá-lo na IntelliJ IDEA para começar a trabalhar no código. A IntelliJ é uma das IDEs mais poderosas para desenvolvimento Java, com excelente suporte para Maven, Spring Boot e testes automatizados.</p>
+
+  <div class="step-box">
+    <h4>📂 Passos para Importar na IntelliJ</h4>
+    <ol>
+      <li><strong>Abra a IntelliJ IDEA</strong></li>
+      <li>Clique em <strong>File → Open</strong> (ou <strong>Open</strong> na tela inicial)</li>
+      <li>Navegue até a pasta <code>automated-tests-with-java-erudio</code> que você acabou de clonar</li>
+      <li>Selecione a pasta raiz do projeto e clique em <strong>OK</strong></li>
+      <li>A IntelliJ detectará automaticamente que é um projeto Maven e perguntará se deseja importá-lo</li>
+      <li>Confirme a importação e aguarde enquanto a IDE indexa os arquivos e baixa as dependências</li>
+    </ol>
+  </div>
+
+  <p>Durante a importação, você verá uma barra de progresso na parte inferior da IDE indicando "Indexing..." e "Resolving Maven dependencies...". Esse processo pode levar alguns minutos na primeira vez, dependendo da sua conexão com a internet e da velocidade do seu computador.</p>
+
+  <div class="warning">
+    <p><strong>⚠️ Importante:</strong> Certifique-se de ter o JDK correto configurado na IntelliJ. O projeto usa Java 17 ou superior. Você pode verificar e configurar o JDK em <strong>File → Project Structure → Project SDK</strong>.</p>
+  </div>
+
+  <h3>3. Baixando Mudanças do Repositório (Pull)</h3>
+
+  <p>Conforme o curso avança e novos exemplos são adicionados ao repositório, você precisará atualizar sua cópia local para ter acesso às versões mais recentes do código. O comando <code>git pull</code> faz exatamente isso - ele baixa as mudanças do repositório remoto e as mescla com seu branch local.</p>
+
+  <div class="step-box">
+    <h4>🔄 Atualizando Seu Repositório Local</h4>
+    <p><strong>Via Terminal:</strong></p>
+  </div>
+
+  <div class="code-block"><code># Certifique-se de estar na pasta do projeto
+cd automated-tests-with-java-erudio
+
+# Baixe as últimas mudanças
+git pull origin main</code></div>
+
+  <p>A saída será similar a:</p>
+
+  <div class="code-block"><code>remote: Enumerating objects: 15, done.
+remote: Counting objects: 100% (15/15), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 10 (delta 4), reused 8 (delta 2)
+Unpacking objects: 100% (10/10), done.
+From https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio
+   a1b2c3d..e4f5g6h  main       -> origin/main
+Updating a1b2c3d..e4f5g6h
+Fast-forward
+ src/main/java/NewClass.java | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)</code></div>
+
+  <div class="step-box">
+    <h4>💻 Via IntelliJ IDEA</h4>
+    <p>A IntelliJ oferece uma interface gráfica conveniente para operações Git:</p>
+    <ol>
+      <li>Pressione <code>Ctrl+T</code> (Windows/Linux) ou <code>Cmd+T</code> (macOS)</li>
+      <li>Ou vá em <strong>VCS → Git → Pull</strong></li>
+      <li>Na janela que abrir, confirme o branch (deve ser <code>main</code>) e clique em <strong>Pull</strong></li>
+    </ol>
+  </div>
+
+  <div class="info">
+    <p><strong>💡 Boa Prática:</strong> Sempre execute <code>git pull</code> antes de começar a trabalhar em algo novo. Isso garante que você está trabalhando com a versão mais atualizada do código e minimiza conflitos de merge.</p>
+  </div>
+
+  <h3>4. Fazendo Commit das Suas Alterações</h3>
+
+  <p>Depois de fazer modificações no código - seja implementando novos testes, corrigindo bugs ou adicionando funcionalidades - você precisa "commitar" essas mudanças. Um commit é como um snapshot do seu projeto em um determinado momento, com uma mensagem descritiva explicando o que foi alterado.</p>
+
+  <div class="step-box">
+    <h4>📝 Criando Commits via Terminal</h4>
+    <p>O fluxo básico envolve três etapas:</p>
+  </div>
+
+  <div class="code-block"><code># 1. Adicionar arquivos modificados à área de staging
+git add .
+
+# Ou adicionar arquivos específicos
+git add src/test/java/MeuNovoTest.java
+
+# 2. Criar o commit com uma mensagem descritiva
+git commit -m "Implementa testes unitários para a classe SimpleMath"
+
+# 3. Verificar o status (opcional mas recomendado)
+git status</code></div>
+
+  <p>A mensagem do commit deve ser clara e descrever <strong>o que</strong> foi feito e, preferencialmente, <strong>por quê</strong>. Exemplos de boas mensagens:</p>
+
+  <div class="highlight">
+    <p><strong>✅ Boas Mensagens de Commit:</strong></p>
+    <ul>
+      <li>"Adiciona validação de entrada nula no método divide"</li>
+      <li>"Corrige bug no cálculo de média quando lista está vazia"</li>
+      <li>"Refatora testes de integração para usar TestContainers"</li>
+      <li>"Implementa testes parametrizados para validação de CPF"</li>
+    </ul>
+  </div>
+
+  <div class="warning">
+    <p><strong>⚠️ Evite Mensagens Genéricas:</strong></p>
+    <ul>
+      <li>"Update" ❌</li>
+      <li>"Fix" ❌</li>
+      <li>"Mudanças" ❌</li>
+      <li>"asdf" ❌</li>
+    </ul>
+    <p>Mensagens vagas dificultam entender o histórico do projeto posteriormente.</p>
+  </div>
+
+  <div class="step-box">
+    <h4>💻 Criando Commits via IntelliJ IDEA</h4>
+    <p>A IntelliJ torna o processo de commit muito mais visual:</p>
+    <ol>
+      <li>Pressione <code>Ctrl+K</code> (Windows/Linux) ou <code>Cmd+K</code> (macOS)</li>
+      <li>Ou vá em <strong>VCS → Commit</strong></li>
+      <li>Na janela de commit, você verá todos os arquivos modificados</li>
+      <li>Marque os arquivos que deseja incluir no commit</li>
+      <li>Escreva uma mensagem de commit descritiva no campo de texto</li>
+      <li>Revise as mudanças clicando em cada arquivo (diff será exibido)</li>
+      <li>Clique em <strong>Commit</strong> ou <strong>Commit and Push</strong></li>
+    </ol>
+  </div>
+
+  <div class="info">
+    <p><strong>💡 Dica Profissional:</strong> Use "Commit and Push" quando tiver certeza de que suas mudanças estão corretas e deseja enviá-las imediatamente ao repositório remoto. Caso contrário, use apenas "Commit" para salvar localmente e depois fazer push manualmente.</p>
+  </div>
+
+  <h3>5. Enviando Mudanças para o GitHub (Push)</h3>
+
+  <p>Commits são salvos apenas localmente na sua máquina. Para compartilhar suas mudanças com outros desenvolvedores ou fazer backup no repositório remoto (GitHub), você precisa fazer "push".</p>
+
+  <div class="step-box">
+    <h4>☁️ Enviando Commits via Terminal</h4>
+  </div>
+
+  <div class="code-block"><code># Enviar commits do branch atual para o repositório remoto
+git push origin main
+
+# Se for seu primeiro push em um novo branch
+git push -u origin nome-do-branch</code></div>
+
+  <p>Após executar o push, você verá algo como:</p>
+
+  <div class="code-block"><code>Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 612 bytes | 612.00 KiB/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
+To https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio.git
+   a1b2c3d..e4f5g6h  main -> main</code></div>
+
+  <div class="step-box">
+    <h4>💻 Fazendo Push via IntelliJ IDEA</h4>
+    <ol>
+      <li>Pressione <code>Ctrl+Shift+K</code> (Windows/Linux) ou <code>Cmd+Shift+K</code> (macOS)</li>
+      <li>Ou vá em <strong>VCS → Git → Push</strong></li>
+      <li>Revise os commits que serão enviados</li>
+      <li>Clique em <strong>Push</strong></li>
+    </ol>
+  </div>
+
+  <div class="warning">
+    <p><strong>⚠️ Atenção ao Push:</strong> Antes de fazer push, certifique-se de que:</p>
+    <ul>
+      <li>Seu código compila sem erros</li>
+      <li>Todos os testes passam</li>
+      <li>Você fez pull das últimas mudanças (para evitar conflitos)</li>
+      <li>Não está enviando arquivos sensíveis (senhas, chaves API, etc.)</li>
+    </ul>
+  </div>
+
+  <h2 id="videos">Recursos de Aprendizado</h2>
+
+  <p>Se você ainda não domina Git ou quer aprofundar seus conhecimentos, temos um minicurso gratuito completo disponível no YouTube. Este curso cobre desde os conceitos básicos até workflows mais avançados.</p>
+
+  <div class="info">
+    <p><strong>💡 Conteúdo Abordado no Minicurso:</strong></p>
+    <ul>
+      <li>Fundamentos de controle de versão</li>
+      <li>Instalação e configuração do Git</li>
+      <li>Comandos essenciais: clone, pull, commit, push</li>
+      <li>Trabalhando com branches</li>
+      <li>Resolvendo conflitos de merge</li>
+      <li>Boas práticas e workflows profissionais</li>
+    </ul>
+  </div>
+
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/QUHIVPAIbRw" title="GIT e GitHub: Minicurso Gratuito Completo!!!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <h2 id="ambiente">Configuração do Ambiente de Desenvolvimento</h2>
+
+  <p>Além de dominar Git, é essencial ter seu ambiente de desenvolvimento configurado corretamente. Isso inclui instalar o JDK, configurar variáveis de ambiente, instalar a IntelliJ IDEA e configurar Maven. Temos tutoriais completos para ambos os sistemas operacionais mais populares.</p>
+
+  <h3>Configuração no Windows</h3>
+
+  <p>O processo no Windows envolve alguns passos específicos, como configurar variáveis de ambiente através do Painel de Controle. Nosso vídeo guia você por todo o processo de forma visual e detalhada.</p>
+
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/M-0HxNoUeNE" title="Configuração do Ambiente no Windows" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <h3>Configuração no Linux</h3>
+
+  <p>No Linux, a configuração geralmente é mais direta, especialmente se você está usando distribuições populares como Ubuntu ou Fedora. O vídeo abaixo mostra como instalar todas as ferramentas necessárias usando o gerenciador de pacotes do sistema.</p>
+
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/Wk5645fHrVU" title="Configuração do Ambiente no Linux" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <h2>Troubleshooting: Problemas Comuns e Soluções</h2>
+
+  <p>Durante a configuração do ambiente e uso do Git, alguns problemas são bastante comuns. Vamos abordar os principais e suas soluções.</p>
+
+  <h3>Problema 1: "git: command not found"</h3>
+
+  <div class="warning">
+    <p><strong>⚠️ Sintoma:</strong> Ao tentar executar comandos Git, você recebe a mensagem "command not found" ou "não é reconhecido como comando interno ou externo".</p>
+    <p><strong>Solução:</strong></p>
+    <ul>
+      <li>Verifique se o Git está instalado: baixe em <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com</a></li>
+      <li>No Windows, certifique-se de que o Git foi adicionado ao PATH durante a instalação</li>
+      <li>Após instalar, feche e reabra o terminal para que as mudanças tenham efeito</li>
+    </ul>
+  </div>
+
+  <h3>Problema 2: Conflitos de Merge</h3>
+
+  <div class="warning">
+    <p><strong>⚠️ Sintoma:</strong> Ao fazer <code>git pull</code>, você vê mensagens como "CONFLICT (content): Merge conflict in arquivo.java".</p>
+    <p><strong>Solução:</strong></p>
+    <ol>
+      <li>Abra os arquivos em conflito na IntelliJ (ela os marcará automaticamente)</li>
+      <li>Você verá marcadores como <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> e <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></li>
+      <li>Use a interface de merge da IntelliJ: clique em <strong>Accept Yours</strong>, <strong>Accept Theirs</strong> ou edite manualmente</li>
+      <li>Após resolver, adicione o arquivo: <code>git add arquivo.java</code></li>
+      <li>Complete o merge: <code>git commit</code></li>
+    </ol>
+  </div>
+
+  <h3>Problema 3: IntelliJ Não Reconhece o Projeto Maven</h3>
+
+  <div class="warning">
+    <p><strong>⚠️ Sintoma:</strong> Após importar o projeto, a IntelliJ não baixa as dependências ou não reconhece a estrutura Maven.</p>
+    <p><strong>Solução:</strong></p>
+    <ul>
+      <li>Clique com botão direito no arquivo <code>pom.xml</code></li>
+      <li>Selecione <strong>Maven → Reload Project</strong></li>
+      <li>Se o problema persistir, vá em <strong>File → Invalidate Caches / Restart</strong></li>
+      <li>Verifique se há erros no painel "Maven" (View → Tool Windows → Maven)</li>
+    </ul>
+  </div>
+
+  <h3>Problema 4: Erro de Autenticação no Push</h3>
+
+  <div class="warning">
+    <p><strong>⚠️ Sintoma:</strong> Ao tentar fazer push, você recebe "Authentication failed" ou "Permission denied".</p>
+    <p><strong>Solução:</strong></p>
+    <ul>
+      <li>Desde agosto de 2021, GitHub não aceita mais senha para autenticação via HTTPS</li>
+      <li>Você precisa configurar um Personal Access Token (PAT)</li>
+      <li>Vá em GitHub → Settings → Developer settings → Personal access tokens → Generate new token</li>
+      <li>Use o token gerado como senha ao fazer push</li>
+      <li>Ou configure SSH keys para autenticação mais conveniente</li>
+    </ul>
+  </div>
+
+  <h2>Boas Práticas e Workflow Profissional</h2>
+
+  <p>Agora que você sabe os comandos básicos, vamos discutir como usar Git de forma profissional em um projeto real.</p>
+
+  <div class="highlight">
+    <h4>✅ Ciclo de Trabalho Recomendado</h4>
+    <ol>
+      <li><strong>Antes de começar:</strong> <code>git pull origin main</code></li>
+      <li><strong>Durante o trabalho:</strong> Faça commits frequentes com mensagens claras</li>
+      <li><strong>Antes de commitar:</strong> Teste seu código localmente</li>
+      <li><strong>Ao commitar:</strong> Use mensagens descritivas no presente/imperativo</li>
+      <li><strong>Antes de fazer push:</strong> Faça pull novamente para garantir que está atualizado</li>
+      <li><strong>Ao fazer push:</strong> Verifique que todos os testes passam</li>
+    </ol>
+  </div>
+
+  <div class="highlight">
+    <h4>✅ Estrutura de Mensagens de Commit</h4>
+    <p>Um padrão comum é usar prefixos para categorizar commits:</p>
+    <ul>
+      <li><code>feat:</code> Nova funcionalidade</li>
+      <li><code>fix:</code> Correção de bug</li>
+      <li><code>test:</code> Adição ou modificação de testes</li>
+      <li><code>refactor:</code> Refatoração de código existente</li>
+      <li><code>docs:</code> Documentação</li>
+      <li><code>style:</code> Formatação, ponto e vírgula faltando, etc.</li>
+    </ul>
+    <p>Exemplo: <code>feat: implementa validação de CPF com testes unitários</code></p>
+  </div>
+
+  <div class="info">
+    <p><strong>💡 Git Flow Simplificado:</strong></p>
+    <p>Para projetos maiores, considere usar branches separados para diferentes funcionalidades. O fluxo básico seria:</p>
+    <ol>
+      <li>Criar um branch para sua funcionalidade: <code>git checkout -b feat/nova-funcionalidade</code></li>
+      <li>Fazer commits nesse branch</li>
+      <li>Quando estiver pronto, fazer merge de volta ao main</li>
+      <li>Isso mantém o main sempre estável</li>
+    </ol>
+  </div>
+
+  <h2>Conclusão e Próximos Passos</h2>
+
+  <p>Parabéns! Agora você tem todo o conhecimento necessário para trabalhar eficientemente com o repositório do curso, fazer commits organizados e manter seu ambiente de desenvolvimento configurado corretamente. Essas habilidades são fundamentais não apenas para este curso, mas para qualquer projeto profissional de desenvolvimento de software.</p>
+
+  <div class="highlight">
+    <p><strong>✅ Checklist de Conhecimentos Adquiridos:</strong></p>
+    <ul>
+      <li>Como clonar um repositório do GitHub</li>
+      <li>Como importar projetos Maven na IntelliJ IDEA</li>
+      <li>Como baixar atualizações com <code>git pull</code></li>
+      <li>Como criar commits significativos</li>
+      <li>Como enviar mudanças com <code>git push</code></li>
+      <li>Workflow Git tanto via terminal quanto via IntelliJ</li>
+      <li>Resolução de problemas comuns</li>
+      <li>Boas práticas profissionais de versionamento</li>
+    </ul>
+  </div>
+
+  <h3>O Que Vem a Seguir</h3>
+
+  <p>Com seu ambiente configurado e o repositório clonado, você está pronto para começar a mergulhar no conteúdo principal do curso. Nas próximas aulas, vamos explorar:</p>
+
+  <ul>
+    <li><strong>Fundamentos de Testes Unitários:</strong> Por que testar e como escrever seus primeiros testes</li>
+    <li><strong>JUnit 5:</strong> A framework de testes mais popular do Java</li>
+    <li><strong>Test-Driven Development (TDD):</strong> Desenvolvendo software guiado por testes</li>
+    <li><strong>Mocking com Mockito:</strong> Isolando dependências nos seus testes</li>
+    <li><strong>Testes de Integração:</strong> Testando componentes trabalhando juntos</li>
+  </ul>
+
+  <p>Cada exemplo de código estará disponível no repositório, organizado por seção do curso. Você poderá acompanhar commit por commit, vendo exatamente como cada funcionalidade foi implementada e testada.</p>
+
+  <h2>Área de Membros Premium da Erudio Training</h2>
+
+  <p>Este guia faz parte do curso completo sobre testes automatizados com Java. Na <a href="https://pub.erudio.com.br/kr/premium_courses" target="_blank" rel="noopener"><strong>Área de Membros Premium da Erudio Training</strong></a>, você encontra não apenas este curso, mas dezenas de outros cobrindo todo o ecossistema Java, desde Spring Boot até microserviços, containers e cloud.</p>
+
+  <div class="course-banner">
+    <a href="https://pub.erudio.com.br/kr/premium_courses" target="_blank" rel="noopener">
+      <img decoding="async" title="Cursos Premium Erudio" src="https://github.com/leandrocgsi/blog-images/blob/main/00-vip-meber.png?raw=true" alt="Cursos Premium Erudio">
+    </a>
+  </div>
+
+  <h2>Recursos Adicionais</h2>
+  
+  <p>Para aprofundar seus conhecimentos sobre Git e desenvolvimento Java:</p>
+
+  <div style="margin-top:16px;">
+    <a href="https://git-scm.com/doc" target="_blank" rel="noopener" class="link-button">Documentação Oficial do Git</a>
+    <a href="https://www.jetbrains.com/help/idea/getting-started.html" target="_blank" rel="noopener" class="link-button">Guia IntelliJ IDEA</a>
+    <a href="https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio" target="_blank" rel="noopener" class="link-button">Repositório do Curso</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="social-icons">
+    <a href="https://www.youtube.com/@erudiotraining" target="_blank" aria-label="YouTube">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/youtube_logo_min.png?raw=true" alt="YouTube" />
+    </a>
+    <a href="https://www.linkedin.com/company/erudiotraining" target="_blank" aria-label="LinkedIn">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/linkedin_logo_min.png?raw=true" alt="LinkedIn" />
+    </a>
+    <a href="https://github.com/leandrocgsi" target="_blank" aria-label="GitHub">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/github_logo_min.png?raw=true" alt="GitHub" />
+    </a>
+    <a href="https://pub.erudio.com.br/kr/premium_courses" target="_blank" aria-label="Udemy">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/udemy_logo.png?raw=true" alt="Udemy" />
+    </a>
+    <a href="https://www.instagram.com/erudiotraining" target="_blank" aria-label="Instagram">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/instagram.png?raw=true" alt="Instagram" />
+    </a>
+    <a href="https://www.facebook.com/erudiotraining" target="_blank" aria-label="Facebook">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/facebook.png?raw=true" alt="Facebook" />
+    </a>
+    <a href="https://www.threads.net/@erudiotraining" target="_blank" aria-label="Threads">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/threads.png?raw=true" alt="Threads" />
+    </a>
+    <a href="https://www.tiktok.com/@erudiotraining" target="_blank" aria-label="TikTok">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/tiktok.png?raw=true" alt="TikTok" />
+    </a>
+    <a href="https://x.com/erudiotraining" target="_blank" aria-label="X">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/twitter.png?raw=true" alt="X (Twitter)" />
+    </a>
+  </div>
+
+  <p id="copyright-text">
+    © Copyright - Erudio Training - 2011-<span id="current-year"></span> - CNPJ: 34.523.711/0001-62 - Todos os Direitos Reservados
+  </p>
+
+  <script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+</footer>
+</body>
+</html>
