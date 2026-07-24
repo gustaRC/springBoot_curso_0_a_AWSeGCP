@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,9 @@ public class PersonController {
     public PersonDTO findById(
             @PathVariable String id //@PathVariable indica a necessidade de preenchimento do caminho da URL: '/person/{id}'
     ) {
-        return service.findById(Long.parseLong(id));
+        PersonDTO person = service.findById(Long.parseLong(id));
+        person.setBirthDay(new Date());
+        return person;
     }
 
     @PostMapping(

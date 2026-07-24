@@ -16,6 +16,7 @@ public class PersonMapper {
         dto.setFirstName(entity.getFirstName());
         dto.setLastName(entity.getLastName());
         dto.setAddress(entity.getAddress());
+        dto.setGender(entity.getGender());
         dto.setBirthDate(new Date()); // Em um cenário REAL: criaríamos o atributo/coluna na Entidade Person permitindo a princípio o seu preenchimento com dados nulos;
         return dto;
     }
@@ -27,6 +28,7 @@ public class PersonMapper {
         entity.setFirstName(entity.getFirstName());
         entity.setLastName(entity.getLastName());
         entity.setAddress(entity.getAddress());
+        entity.setGender(dto.getGender());
         //entity.setBirthDate(new Date()); // Em um cenário REAL: criaríamos o atributo/coluna na Entidade Person permitindo a princípio o seu preenchimento com dados nulos;
         return entity;
     }

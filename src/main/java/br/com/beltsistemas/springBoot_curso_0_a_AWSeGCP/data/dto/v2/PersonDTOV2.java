@@ -12,6 +12,7 @@ public class PersonDTOV2 implements Serializable {
     private String firstName;
     private String lastName;
     private String address;
+    private String gender;
     private Date birthDate;
 
     public PersonDTOV2() {
@@ -55,6 +56,14 @@ public class PersonDTOV2 implements Serializable {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override
