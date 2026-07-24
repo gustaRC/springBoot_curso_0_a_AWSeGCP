@@ -1,15 +1,26 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonPropertyOrder({"address", "lastName", "firstName", "id"}) // ordenar DTO de maneira especifica
 public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonProperty("codigo") // renomear campo e outras funcionalidades
     private Long id;
+
+    @JsonProperty(value = "first_name") // renomear campo e outras funcionalidade
     private String firstName;
+
+    @JsonIgnore() // ignorar campo, ou seja, não o exibir
     private String lastName;
+
     private String address;
 
     public PersonDTO() {
