@@ -24,4 +24,7 @@ logging:
   level:
     #root: WARN
     br.com.beltsistemas: DEBUG #INFO é o default
-    org.flywaydb: DEBUG
+    org:
+      flywaydb: DEBUG
+      springframework:
+        web: DEBUG

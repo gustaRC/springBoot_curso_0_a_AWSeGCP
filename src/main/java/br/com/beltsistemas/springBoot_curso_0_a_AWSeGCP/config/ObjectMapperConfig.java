@@ -1,29 +1,37 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.config;
 
+import org.springframework.boot.jackson.autoconfigure.JsonMapperBuilderCustomizer;
+import org.springframework.boot.jackson.autoconfigure.XmlMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.ser.std.SimpleBeanPropertyFilter;
 import tools.jackson.databind.ser.std.SimpleFilterProvider;
 
 @Configuration
 public class ObjectMapperConfig {
 
-    @Bean
-    public ObjectMapper objectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-
+    private SimpleFilterProvider buildFilters() {
 //      vejo utilidade em fazer padrões de filtragem, por exemplo: uma exibição de atributos para usuários logados e outra para usuários deslogados
-        SimpleFilterProvider filters = new SimpleFilterProvider()
+        return new SimpleFilterProvider()
 //                          adicionamos atributos que não queremos que sejam enviados, por exemplo: password, lastName, etc
                 .addFilter("PersonFilter", SimpleBeanPropertyFilter.serializeAllExcept("sensitiveData"))
                 .addFilter("Test", SimpleBeanPropertyFilter.serializeAllExcept("attributeTest"));
+    }
 
-        mapper.rebuild().filterProvider(filters);
-        return mapper; /*
-        RECOMENDAÇÃO DO CLAUDE:
-        return JsonMapper.builder()
-            .filterProvider(filters)
-            .build(); */
+    /*
+    Necessário esses dois métodos devido a erro de configuração do JSON/XML pelo Spring:
+    ObjectMapperConfig.java — O problema original era criar um ObjectMapper/XmlMapper manualmente como @Bean,
+    o que substituía o auto-configurado pelo Spring Boot. Isso causava:
+        - Para JSON: o mapper manual não tinha todos os módulos/configurações que o Spring Boot configuraria automaticamente;
+        - Para XML: o mapper manual era ObjectMapper puro sem suporte a XML.
+     */
+    @Bean
+    public JsonMapperBuilderCustomizer jsonCustomizer() {
+        return builder -> builder.filterProvider(buildFilters());
+    }
+
+    @Bean
+    public XmlMapperBuilderCustomizer xmlCustomizer() {
+        return builder -> builder.filterProvider(buildFilters());
     }
 }

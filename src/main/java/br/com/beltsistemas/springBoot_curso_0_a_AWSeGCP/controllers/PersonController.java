@@ -18,14 +18,14 @@ public class PersonController {
     @Autowired
     private PersonService service; // == private PersonService service = new PersonService();
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE /* produces -> dados ENVIADOS DA a API (response) */ )
+    @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE } /* produces -> dados ENVIADOS DA a API (response) */ )
     public List<PersonDTO> findAll() {
         return service.findAll();
     }
 
     @GetMapping(
             value = "/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE /* produces -> dados ENVIADOS DA a API (response) */
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE } /* produces -> dados ENVIADOS DA a API (response) */
     )
     public PersonDTO findById(
             @PathVariable String id //@PathVariable indica a necessidade de preenchimento do caminho da URL: '/person/{id}'
@@ -40,9 +40,9 @@ public class PersonController {
 
     @PostMapping(
             //consumes -> dados ENVIADOS PARA a API (request)
-            consumes = MediaType.APPLICATION_JSON_VALUE, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
-            produces = MediaType.APPLICATION_JSON_VALUE  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
     public PersonDTO create(
             @RequestBody PersonDTO person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
@@ -53,9 +53,9 @@ public class PersonController {
     @PostMapping(
             value = "/v2",
             //consumes -> dados ENVIADOS PARA a API (request)
-            consumes = MediaType.APPLICATION_JSON_VALUE, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
-            produces = MediaType.APPLICATION_JSON_VALUE  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
     public PersonDTOV2 createV2(
             @RequestBody PersonDTOV2 person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
@@ -65,9 +65,9 @@ public class PersonController {
 
     @PutMapping(
             //consumes -> dados ENVIADOS PARA a API (request)
-            consumes = MediaType.APPLICATION_JSON_VALUE, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
-            produces = MediaType.APPLICATION_JSON_VALUE  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
     public PersonDTO update(
             @RequestBody PersonDTO person // @RequestBody para indicar a necessidade de preenchimento no Body da aplicação
@@ -78,7 +78,7 @@ public class PersonController {
     @DeleteMapping(
             value = "/{id}",
             //produces -> dados ENVIADOS DA a API (response)
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
     public ResponseEntity<?> delete(
             @PathVariable String id
