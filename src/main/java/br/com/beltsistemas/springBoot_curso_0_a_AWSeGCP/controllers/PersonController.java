@@ -32,6 +32,9 @@ public class PersonController {
     ) {
         PersonDTO person = service.findById(Long.parseLong(id));
         person.setBirthDay(new Date());
+        //person.setPhoneNumber("(99) 99999-9999"); // se não preencher esse dado não será exibido
+        //person.setAddress(""); // se estiver vazio não será exibido
+        person.setSensitiveData("password_1234");
         return person;
     }
 
