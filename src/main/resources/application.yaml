@@ -26,5 +26,5 @@ logging:
     br.com.beltsistemas: DEBUG #INFO é o default
     org:
       flywaydb: DEBUG
-      springframework:
-        web: DEBUG
+#      springframework:
+#        web: DEBUG
