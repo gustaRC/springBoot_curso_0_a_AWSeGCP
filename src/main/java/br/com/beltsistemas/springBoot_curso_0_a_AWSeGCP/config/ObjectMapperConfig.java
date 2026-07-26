@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tools.jackson.databind.ser.std.SimpleBeanPropertyFilter;
 import tools.jackson.databind.ser.std.SimpleFilterProvider;
+import tools.jackson.dataformat.yaml.YAMLMapper;
 
 @Configuration
 public class ObjectMapperConfig {
@@ -19,7 +20,7 @@ public class ObjectMapperConfig {
     }
 
     /*
-    Necessário esses dois métodos devido a erro de configuração do JSON/XML pelo Spring:
+    Necessário esses três métodos devido a erro de configuração do JSON/XML pelo Spring:
     ObjectMapperConfig.java — O problema original era criar um ObjectMapper/XmlMapper manualmente como @Bean,
     o que substituía o auto-configurado pelo Spring Boot. Isso causava:
         - Para JSON: o mapper manual não tinha todos os módulos/configurações que o Spring Boot configuraria automaticamente;
@@ -33,5 +34,12 @@ public class ObjectMapperConfig {
     @Bean
     public XmlMapperBuilderCustomizer xmlCustomizer() {
         return builder -> builder.filterProvider(buildFilters());
+    }
+
+    @Bean
+    public YAMLMapper yamlMapper() {
+        return YAMLMapper.builder()
+                .filterProvider(buildFilters())
+                .build();
     }
 }
