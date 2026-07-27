@@ -20,7 +20,7 @@ public class PersonDTO implements Serializable {
     @JsonProperty(value = "first_name") // renomear campo e outras funcionalidade
     private String firstName;
 
-    @JsonIgnore() // ignorar campo, ou seja, não o exibir
+    //@JsonIgnore() // ignorar campo, ou seja, não o exibir
     private String lastName;
 
     @JsonInclude(JsonInclude.Include.NON_NULL) // somente será exibido se o valor NÂO FOR NULO
