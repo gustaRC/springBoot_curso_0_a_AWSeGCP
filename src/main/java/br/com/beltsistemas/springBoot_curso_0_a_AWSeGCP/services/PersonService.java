@@ -1,5 +1,6 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
 
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.PersonController;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v2.PersonDTOV2;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFoundException;
@@ -16,6 +17,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.ObjectMapper.parseListObjects;
 import static br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.ObjectMapper.parseObject;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service // utilizado para tratamentos de regras de negócio separadamente do Controller (função definida somente para controle de Rotas)
 public class PersonService {
@@ -41,7 +44,17 @@ public class PersonService {
         Person entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
 //      Person -> PersonDTO.class
-        return parseObject(entity, PersonDTO.class);
+        PersonDTO dto = parseObject(entity, PersonDTO.class);
+
+        //add() disponibilizado via "extends RepresentationModel<PersonDTO>"
+        dto.add( // 4.'dto.add()' - anexa o link criado no responseBody
+            linkTo( // 2.'linkTo' - transforma a gravação realizada pelo 'methodOn' numa URL real
+                methodOn(PersonController.class).findById(String.valueOf(id))
+//              1.'methodOn' - grava/salva/registra a chamada do método
+            ).withSelfRel().withType("GET")
+//          3.'withSelfRel().withType("GET")' - adiciona/decora link com metadados semânticos
+        );
+        return dto;
     }
 
     public PersonDTO create(PersonDTO person) {

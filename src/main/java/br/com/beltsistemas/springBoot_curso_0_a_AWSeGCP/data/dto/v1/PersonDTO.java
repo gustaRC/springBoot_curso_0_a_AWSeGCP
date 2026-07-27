@@ -2,6 +2,7 @@ package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.serializer.GenderSerializer;
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.hateoas.RepresentationModel;
 import tools.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
@@ -10,7 +11,8 @@ import java.util.Objects;
 
 @JsonPropertyOrder({"address", "lastName", "firstName", "id"}) // ordenar DTO de maneira especifica
 @JsonFilter("PersonFilter") // mesmo nome atribuido no index em ObjectMapperConfig
-public class PersonDTO implements Serializable {
+public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
+// RepresentationModel: necessário para utilizar o HATEOAS na aplicação
 
     private static final long serialVersionUID = 1L;
 
