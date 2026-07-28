@@ -36,7 +36,9 @@ public class PersonService {
         logger.info("Finding all people!");
 
 //      Person -> PersonDTO.class
-        return parseListObjects(repository.findAll(), PersonDTO.class);
+        List<PersonDTO> persons = parseListObjects(repository.findAll(), PersonDTO.class);
+        persons.forEach(PersonService::addHateoasLinks);
+        return persons;
     }
 
     public PersonDTO findById(Long id) {
@@ -46,7 +48,7 @@ public class PersonService {
 //      Person -> PersonDTO.class
         PersonDTO dto = parseObject(entity, PersonDTO.class);
 
-        addHateoasLinks(id, dto);
+        addHateoasLinks(dto);
         return dto;
     }
 
@@ -57,7 +59,9 @@ public class PersonService {
         Person entity = parseObject(person, Person.class);
 
 //      Person -> PersonDTO.class
-        return parseObject(repository.save(entity), PersonDTO.class);
+        PersonDTO dto = parseObject(repository.save(entity), PersonDTO.class);
+        addHateoasLinks(dto);
+        return dto;
     }
 
     public PersonDTOV2 createV2(PersonDTOV2 person) {
@@ -82,7 +86,9 @@ public class PersonService {
         entity.setAddress(person.getAddress());
 
 //      Person -> PersonDTO.class
-        return parseObject(repository.save(entity), PersonDTO.class);
+        PersonDTO dto = parseObject(repository.save(entity), PersonDTO.class);
+        addHateoasLinks(dto);
+        return dto;
     }
 
     public void delete(Long id) {
@@ -93,11 +99,11 @@ public class PersonService {
         repository.deleteById(entity.getId());
     }
 
-    private static void addHateoasLinks(Long id, PersonDTO dto) {
+    private static void addHateoasLinks(PersonDTO dto) {
         //add() disponibilizado via "extends RepresentationModel<PersonDTO>"
         dto.add( // 4.'dto.add()' - anexa o link criado no responseBody
             linkTo( // 2.'linkTo' - transforma a gravação realizada pelo 'methodOn' numa URL real
-                methodOn(PersonController.class).findById(String.valueOf(id))
+                methodOn(PersonController.class).findById(String.valueOf(dto.getId()))
 //              1.'methodOn' - grava/salva/registra a chamada do método
             ).withSelfRel().withType("GET") // se referencia: Resultado: _links: { self: _DADOS-DA-REQUISIÇÃO-ATUAL(findById)_ }
 //          3.'withSelfRel().withType("GET")' - adiciona/decora link com metadados semânticos
@@ -110,7 +116,7 @@ public class PersonService {
         );
         dto.add(
             linkTo(
-                methodOn(PersonController.class).delete(String.valueOf(id))
+                methodOn(PersonController.class).delete(String.valueOf(dto.getId()))
             ).withRel("delete").withType("DELETE")
         );
         dto.add(
