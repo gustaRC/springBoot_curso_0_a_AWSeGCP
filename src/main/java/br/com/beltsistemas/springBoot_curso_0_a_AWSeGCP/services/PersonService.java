@@ -46,14 +46,7 @@ public class PersonService {
 //      Person -> PersonDTO.class
         PersonDTO dto = parseObject(entity, PersonDTO.class);
 
-        //add() disponibilizado via "extends RepresentationModel<PersonDTO>"
-        dto.add( // 4.'dto.add()' - anexa o link criado no responseBody
-            linkTo( // 2.'linkTo' - transforma a gravação realizada pelo 'methodOn' numa URL real
-                methodOn(PersonController.class).findById(String.valueOf(id))
-//              1.'methodOn' - grava/salva/registra a chamada do método
-            ).withSelfRel().withType("GET")
-//          3.'withSelfRel().withType("GET")' - adiciona/decora link com metadados semânticos
-        );
+        addHateoasLinks(id, dto);
         return dto;
     }
 
@@ -98,5 +91,37 @@ public class PersonService {
         PersonDTO entity = findById(id);
 
         repository.deleteById(entity.getId());
+    }
+
+    private static void addHateoasLinks(Long id, PersonDTO dto) {
+        //add() disponibilizado via "extends RepresentationModel<PersonDTO>"
+        dto.add( // 4.'dto.add()' - anexa o link criado no responseBody
+            linkTo( // 2.'linkTo' - transforma a gravação realizada pelo 'methodOn' numa URL real
+                methodOn(PersonController.class).findById(String.valueOf(id))
+//              1.'methodOn' - grava/salva/registra a chamada do método
+            ).withSelfRel().withType("GET") // se referencia: Resultado: _links: { self: _DADOS-DA-REQUISIÇÃO-ATUAL(findById)_ }
+//          3.'withSelfRel().withType("GET")' - adiciona/decora link com metadados semânticos
+        );
+        dto.add(
+            linkTo(
+                methodOn(PersonController.class).findAll()
+            ).withRel("findAll").withType("GET")
+//          withRel - nome de referencia de outro link: Resultado: _links: { self: _DADOS_, test(NOME-DECLARADO-NO-withRel): _DADOS_ }
+        );
+        dto.add(
+            linkTo(
+                methodOn(PersonController.class).delete(String.valueOf(id))
+            ).withRel("delete").withType("DELETE")
+        );
+        dto.add(
+            linkTo(
+                methodOn(PersonController.class).create(dto)
+            ).withRel("create").withType("POST")
+        );
+        dto.add(
+            linkTo(
+                methodOn(PersonController.class).update(dto)
+            ).withRel("update").withType("PUT")
+        );
     }
 }
