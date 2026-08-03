@@ -39,7 +39,7 @@ class PersonServiceTest {
 
     @Test
     void findById() {
-        Person person = input.mockEntity(1);
+        Person person = input.mockEntity(1); // biblioteca INSTANCE para criação de Mock Automatizado (Testar depois)
         person.setId(1L);
 
         when(repository.findById(1L)).thenReturn(Optional.of(person));
@@ -93,6 +93,57 @@ class PersonServiceTest {
 
     @Test
     void create() {
+        Person person = input.mockEntity(1); // biblioteca INSTANCE para criação de Mock Automatizado (Testar depois)
+        Person persisted = person;
+        persisted.setId(1L);
+
+        when(repository.save(person)).thenReturn(persisted);
+
+        PersonDTO result = service.findById(1L);
+
+        assertNotNull(result); // TRADUÇÃO: "afirmar que não é nulo" | 'result' existe? Ou seja, 'result' não é nulo?
+        assertNotNull(result.getId()); // ID de 'result' existe? Ou seja, ID de 'result' não é nulo?
+        assertEquals(person.getId(), result.getId()); // TRADUÇÃO: "afirmar igual" | ID de 'person' é igual ao ID de 'result'?
+        assertNotNull(result.getLinks()); // Links HATEOAS de 'result' existe? Ou seja, Links HATEOAS de 'result' não é nulo?
+        assertEquals(person.getAddress(), result.getAddress());
+        assertEquals(person.getFirstName(), result.getFirstName());
+        assertEquals(person.getLastName(), result.getLastName());
+
+        assertNotNull(result.getLinks().stream() // verificando Link 'self' do HATEOAS
+                .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
+                        link.getRel().value().equals("self") &&
+                                link.getHref().endsWith("/api/person/v1/1") &&
+                                link.getType().equals("GET")
+                )
+        );
+        assertNotNull(result.getLinks().stream() // verificando Link 'delete' do HATEOAS
+                .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
+                        link.getRel().value().equals("delete") &&
+                                link.getHref().endsWith("/api/person/v1/1") &&
+                                link.getType().equals("DELETE")
+                )
+        );
+        assertNotNull(result.getLinks().stream() // verificando Link 'findAll' do HATEOAS
+                .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
+                        link.getRel().value().equals("findAll") &&
+                                link.getHref().endsWith("/api/person/v1") &&
+                                link.getType().equals("GET")
+                )
+        );
+        assertNotNull(result.getLinks().stream() // verificando Link 'create' do HATEOAS
+                .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
+                        link.getRel().value().equals("create") &&
+                                link.getHref().endsWith("/api/person/v1") &&
+                                link.getType().equals("POST")
+                )
+        );
+        assertNotNull(result.getLinks().stream() // verificando Link 'update' do HATEOAS
+                .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
+                        link.getRel().value().equals("update") &&
+                                link.getHref().endsWith("/api/person/v1") &&
+                                link.getType().equals("PUT")
+                )
+        );
     }
 
     @Test
