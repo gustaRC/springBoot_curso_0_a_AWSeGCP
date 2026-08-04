@@ -8,7 +8,7 @@ public class RequiredObjectIsNullException extends RuntimeException {
 
     //método já criado por padrão ao criar a classe tipo exception
     public RequiredObjectIsNullException() {
-        super("It is not allowed to persist a null object!");
+        super("It is not allowed to persist a null object!"); // mensagem padrão de erro
     }
 
     public RequiredObjectIsNullException(String message) {

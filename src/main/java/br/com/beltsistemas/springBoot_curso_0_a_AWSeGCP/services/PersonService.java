@@ -8,7 +8,6 @@ import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFou
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.custom.PersonMapper;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.repository.PersonRepository;
-import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
