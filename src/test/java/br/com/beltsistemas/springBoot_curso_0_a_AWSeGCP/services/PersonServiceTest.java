@@ -1,6 +1,7 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.RequiredObjectIsNullException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.repository.PersonRepository;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unitetests.mapper.mocks.MockPerson;
@@ -12,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -152,7 +154,16 @@ class PersonServiceTest {
     }
 
     @Test
-    void createV2() {
+    void testCreateWithNullException() {
+        Exception exception = assertThrows( // TRADUÇÃO: "afirma lances (lançamento de exceção)" | assertThrows() = método que verifica se uma exceção foi lançada
+            RequiredObjectIsNullException.class, () -> {
+                service.create(null);
+            });
+
+        String expectedMessage = "It is not allowed to persist a null object!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage)); // TRADUÇÃO: "afirmar verdadeiro" | assertTrue() = método que verifica se a condição é verdadeira
     }
 
     @Test
@@ -217,6 +228,19 @@ class PersonServiceTest {
     }
 
     @Test
+    void testUpdateWithNullException() {
+        Exception exception = assertThrows( // TRADUÇÃO: "afirma lances (lançamento de exceção)" | assertThrows() = método que verifica se uma exceção foi lançada
+                RequiredObjectIsNullException.class, () -> {
+                    service.update(null);
+                });
+
+        String expectedMessage = "It is not allowed to persist a null object!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage)); // TRADUÇÃO: "afirmar verdadeiro" | assertTrue() = método que verifica se a condição é verdadeira
+    }
+
+    @Test
     void delete() {
         Person person = input.mockEntity(1); // biblioteca INSTANCE para criação de Mock Automatizado (Testar depois)
         person.setId(1L);
@@ -232,5 +256,8 @@ class PersonServiceTest {
 
     @Test
     void findAll() {
+        List<Person> list = input.mockEntityList(); // biblioteca INSTANCE para criação de Mock Automatizado (Testar depois)
+
+        when(repository.findAll()).thenReturn(list); // prepara o ambiente de teste, criando um cenário simulado sem depender do banco real (pois os testes/mock não possuem acesso ao banco real)
     }
 }
