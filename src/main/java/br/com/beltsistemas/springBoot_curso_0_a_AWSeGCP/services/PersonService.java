@@ -3,6 +3,7 @@ package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.PersonController;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v2.PersonDTOV2;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.RequiredObjectIsNullException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFoundException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.custom.PersonMapper;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
@@ -53,6 +54,8 @@ public class PersonService {
     }
 
     public PersonDTO create(PersonDTO person) {
+        if (person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Creating one person!");
 
 //      PersonDTO -> Person.class
@@ -75,6 +78,8 @@ public class PersonService {
     }
 
     public PersonDTO update(PersonDTO person) {
+        if (person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Updating one person!");
 
 //      PersonDTO -> Person.class
