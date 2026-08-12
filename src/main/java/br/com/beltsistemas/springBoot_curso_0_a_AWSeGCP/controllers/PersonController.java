@@ -1,14 +1,9 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.docs.PersonControllerDocs;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v2.PersonDTOV2;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.PersonService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,47 +14,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/person/v1")
-@Tag(name = "Person Endpoint", description = "Endpoints for Managing Person API")
-public class PersonController {
+public class PersonController implements PersonControllerDocs {
 
     @Autowired
     private PersonService service; // == private PersonService service = new PersonService();
 
-    @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE } /* produces -> dados ENVIADOS DA a API (response) */ )
-    @Operation(
-            summary = "Finds all people",
-            description = "Finds all people",
-            tags = {"Person"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200", content = { @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema = @Schema(implementation = PersonDTO.class))) }),
-                    @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
-            }
-    )
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE} /* produces -> dados ENVIADOS DA a API (response) */)
+    @Override
     public List<PersonDTO> findAll() {
         return service.findAll();
     }
 
     @GetMapping(
             value = "/{id}",
-            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE } /* produces -> dados ENVIADOS DA a API (response) */
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE} /* produces -> dados ENVIADOS DA a API (response) */
     )
-    @Operation(
-            summary = "Finds a person by ID",
-            description = "Finds a person by ID",
-            tags = {"Person"},
-            responses = {
-                    @ApiResponse(description = "Success", responseCode = "200", content = { @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = PersonDTO.class)) }),
-                    @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
-                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
-                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
-                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-                    @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content),
-            }
-    )
+    @Override
     public PersonDTO findById(
             @PathVariable String id //@PathVariable indica a necessidade de preenchimento do caminho da URL: '/person/{id}'
     ) {
@@ -73,10 +43,11 @@ public class PersonController {
 
     @PostMapping(
             //consumes -> dados ENVIADOS PARA a API (request)
-            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
-            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
+    @Override
     public PersonDTO create(
             @RequestBody PersonDTO person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
     ) {
@@ -86,10 +57,11 @@ public class PersonController {
     @PostMapping(
             value = "/v2",
             //consumes -> dados ENVIADOS PARA a API (request)
-            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
-            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
+    @Override
     public PersonDTOV2 createV2(
             @RequestBody PersonDTOV2 person //@RequestBody para indicar a necessidade de preenchimento no Body da aplicação
     ) {
@@ -98,10 +70,11 @@ public class PersonController {
 
     @PutMapping(
             //consumes -> dados ENVIADOS PARA a API (request)
-            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
             //produces -> dados ENVIADOS DA a API (response)
-            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}  // opcional o consumes/produces, contudo caso não está descrito o Swagger se perderá na documentação
     )
+    @Override
     public PersonDTO update(
             @RequestBody PersonDTO person // @RequestBody para indicar a necessidade de preenchimento no Body da aplicação
     ) {
@@ -111,8 +84,9 @@ public class PersonController {
     @DeleteMapping(
             value = "/{id}",
             //produces -> dados ENVIADOS DA a API (response)
-            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}
     )
+    @Override
     public ResponseEntity<?> delete(
             @PathVariable String id
     ) {
