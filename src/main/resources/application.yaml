@@ -28,3 +28,7 @@ logging:
       flywaydb: DEBUG
 #      springframework:
 #        web: DEBUG
+spring-doc:
+  paths-to-match: /api/**/v1/** # Definindo o path que será documentado pelo Swagger, ou seja, endpoints com /api/qualquer_coisa/v1/qualquer_coisa serão documentados
+  swagger-ui:
+    use-root-path: true # Para que o Swagger UI seja exibido na raiz do projeto, ou seja, http://localhost:8080/swagger-ui/index.html
