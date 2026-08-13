@@ -1,33 +1,33 @@
-package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model;
+package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1;
 
-import jakarta.persistence.*;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Book;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.OptBoolean;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
-@Entity
-@Table(name = "books")
-public class Book {
+public class BookDTO extends RepresentationModel<BookDTO> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(isRequired = OptBoolean.TRUE)
     private int id;
 
     private String author;
 
-    @Column(nullable = false)
+    @JsonProperty(isRequired = OptBoolean.TRUE)
     private Date launch_date;
 
-    @Column(nullable = false, precision = 65, scale = 2)
+    @JsonProperty(isRequired = OptBoolean.TRUE)
     private BigDecimal price;
 
     private String title;
 
-    public Book() {
+    public BookDTO() {
     }
 
-    public Book(String author, int id, Date launch_date, BigDecimal price, String title) {
+    public BookDTO(String author, int id, Date launch_date, BigDecimal price, String title) {
         setAuthor(author);
         setId(id);
         setLaunch_date(launch_date);
