@@ -1,8 +1,6 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Book;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.OptBoolean;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
@@ -11,15 +9,12 @@ import java.util.Objects;
 
 public class BookDTO extends RepresentationModel<BookDTO> {
 
-    @JsonProperty(isRequired = OptBoolean.TRUE)
     private int id;
 
     private String author;
 
-    @JsonProperty(isRequired = OptBoolean.TRUE)
     private Date launch_date;
 
-    @JsonProperty(isRequired = OptBoolean.TRUE)
     private BigDecimal price;
 
     private String title;

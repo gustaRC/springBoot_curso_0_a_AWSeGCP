@@ -1,7 +1,9 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.BookDTO;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.ObjectMapper;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,23 +13,48 @@ import java.util.List;
 @RequestMapping("api/book/v1")
 public class BookController {
 
-    @GetMapping()
+    @Autowired
+    private BookService service;
+
+    @GetMapping(
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
+    )
     public List<BookDTO> findAll() {
+        return service.findAll();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(
+        value = "/{id}",
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
+    )
     public BookDTO findById(int id) {
+        return service.findById(id);
     }
 
-    @PostMapping()
+    @PostMapping(
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
+    )
     public BookDTO create(BookDTO dto) {
+        return service.create(dto);
     }
 
-    @PutMapping()
+    @PutMapping(
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
+    )
     public BookDTO update(BookDTO dto) {
+        return service.update(dto);
     }
 
-    @DeleteMapping()
+    @DeleteMapping(
+        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
+        produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
+    )
     public ResponseEntity<?> delete(int id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
