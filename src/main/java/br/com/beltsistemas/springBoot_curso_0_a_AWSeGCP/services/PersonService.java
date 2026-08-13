@@ -30,7 +30,6 @@ public class PersonService {
     @Autowired
     private PersonMapper converter;
 
-    private final AtomicLong counter = new AtomicLong();
     private Logger logger = LoggerFactory.getLogger(PersonService.class.getName()); //aprofundaremos no Logger mais para frente
 
     public List<PersonDTO> findAll() {
