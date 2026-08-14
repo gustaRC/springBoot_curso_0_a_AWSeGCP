@@ -22,7 +22,7 @@ public class BookDTO extends RepresentationModel<BookDTO> {
     public BookDTO() {
     }
 
-    public BookDTO(String author, int id, Date launch_date, BigDecimal price, String title) {
+    public BookDTO(String author, Integer id, Date launch_date, BigDecimal price, String title) {
         setAuthor(author);
         setId(id);
         setLaunch_date(launch_date);
