@@ -62,8 +62,15 @@ public class BookService {
 
         logger.info("Updating a specific book!");
 
+        Book existingEntity = ObjectMapper.parseObject(findById(dto.getId()), Book.class);
+
+        existingEntity.setTitle(dto.getTitle());
+        existingEntity.setAuthor(dto.getAuthor());
+        existingEntity.setPrice(dto.getPrice());
+        existingEntity.setLaunch_date(dto.getLaunch_date());
+
         BookDTO newDto = ObjectMapper.parseObject(
-                repository.save(ObjectMapper.parseObject(findById(dto.getId()), Book.class)),
+                repository.save(existingEntity),
                 BookDTO.class
         );
         addHateoasLinks(newDto);
