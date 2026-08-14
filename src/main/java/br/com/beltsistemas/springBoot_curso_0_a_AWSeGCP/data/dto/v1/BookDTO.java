@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class BookDTO extends RepresentationModel<BookDTO> {
 
-    private int id;
+    private Integer id;
 
     private String author;
 
@@ -38,11 +38,11 @@ public class BookDTO extends RepresentationModel<BookDTO> {
         this.author = author;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,12 +72,14 @@ public class BookDTO extends RepresentationModel<BookDTO> {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Book book)) return false;
-        return getId() == book.getId() && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getLaunch_date(), book.getLaunch_date()) && Objects.equals(getPrice(), book.getPrice()) && Objects.equals(getTitle(), book.getTitle());
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        BookDTO bookDTO = (BookDTO) o;
+        return Objects.equals(getId(), bookDTO.getId()) && Objects.equals(getAuthor(), bookDTO.getAuthor()) && Objects.equals(getLaunch_date(), bookDTO.getLaunch_date()) && Objects.equals(getPrice(), bookDTO.getPrice()) && Objects.equals(getTitle(), bookDTO.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getAuthor(), getLaunch_date(), getPrice(), getTitle());
+        return Objects.hash(super.hashCode(), getId(), getAuthor(), getLaunch_date(), getPrice(), getTitle());
     }
 }

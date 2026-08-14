@@ -36,9 +36,8 @@ public class BookService {
         return list;
     }
 
-    public BookDTO findById(int id) {
-        logger.info("Finding a specific book!");
-
+    public BookDTO findById(Integer id) {
+        logger.info("Finding a specific book! ID: " + id);
         Book entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No Book found for this ID!"));
 
         BookDTO dto = ObjectMapper.parseObject(entity, BookDTO.class);
@@ -71,7 +70,7 @@ public class BookService {
         return newDto;
     }
 
-    public void delete(int id) {
+    public void delete(Integer id) {
         logger.info("Deleting a specific book!");
 
         BookDTO dto = findById(id);

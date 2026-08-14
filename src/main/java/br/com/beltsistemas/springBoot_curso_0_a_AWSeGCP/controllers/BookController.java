@@ -17,7 +17,6 @@ public class BookController {
     private BookService service;
 
     @GetMapping(
-        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
         produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
     )
     public List<BookDTO> findAll() {
@@ -26,10 +25,9 @@ public class BookController {
 
     @GetMapping(
         value = "/{id}",
-        consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
         produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
     )
-    public BookDTO findById(int id) {
+    public BookDTO findById(@PathVariable Integer id) {
         return service.findById(id);
     }
 
@@ -37,7 +35,7 @@ public class BookController {
         consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
         produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
     )
-    public BookDTO create(BookDTO dto) {
+    public BookDTO create(@RequestBody BookDTO dto) {
         return service.create(dto);
     }
 
@@ -45,7 +43,7 @@ public class BookController {
         consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
         produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
     )
-    public BookDTO update(BookDTO dto) {
+    public BookDTO update(@RequestBody BookDTO dto) {
         return service.update(dto);
     }
 
@@ -53,7 +51,7 @@ public class BookController {
         consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE },
         produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE }
     )
-    public ResponseEntity<?> delete(int id) {
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

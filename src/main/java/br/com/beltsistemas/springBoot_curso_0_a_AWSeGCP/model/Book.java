@@ -12,7 +12,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String author;
 
@@ -27,7 +27,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String author, int id, Date launch_date, BigDecimal price, String title) {
+    public Book(String author, Integer id, Date launch_date, BigDecimal price, String title) {
         setAuthor(author);
         setId(id);
         setLaunch_date(launch_date);
@@ -43,11 +43,11 @@ public class Book {
         this.author = author;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -77,8 +77,9 @@ public class Book {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Book book)) return false;
-        return getId() == book.getId() && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getLaunch_date(), book.getLaunch_date()) && Objects.equals(getPrice(), book.getPrice()) && Objects.equals(getTitle(), book.getTitle());
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(getId(), book.getId()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getLaunch_date(), book.getLaunch_date()) && Objects.equals(getPrice(), book.getPrice()) && Objects.equals(getTitle(), book.getTitle());
     }
 
     @Override
