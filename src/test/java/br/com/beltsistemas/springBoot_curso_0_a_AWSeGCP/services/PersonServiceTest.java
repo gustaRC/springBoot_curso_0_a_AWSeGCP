@@ -278,14 +278,14 @@ class PersonServiceTest {
         assertTrue(personOne.getLinks().stream() // verificando Link 'self' do HATEOAS
                 .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
                         link.getRel().value().equals("self") &&
-                                link.getHref().endsWith("/api/person/v1/1") &&
+                                link.getHref().endsWith("/api/person/v1/" + personOne.getId()) &&
                                 link.getType().equals("GET")
                 )
         );
         assertTrue(personOne.getLinks().stream() // verificando Link 'delete' do HATEOAS
                 .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
                         link.getRel().value().equals("delete") &&
-                                link.getHref().endsWith("/api/person/v1/1") &&
+                                link.getHref().endsWith("/api/person/v1/" + personOne.getId()) &&
                                 link.getType().equals("DELETE")
                 )
         );
@@ -324,14 +324,14 @@ class PersonServiceTest {
         assertTrue(personTwo.getLinks().stream() // verificando Link 'self' do HATEOAS
                 .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
                         link.getRel().value().equals("self") &&
-                                link.getHref().endsWith("/api/person/v1/1") &&
+                                link.getHref().endsWith("/api/person/v1/" + personTwo.getId()) &&
                                 link.getType().equals("GET")
                 )
         );
         assertTrue(personTwo.getLinks().stream() // verificando Link 'delete' do HATEOAS
                 .anyMatch(link -> // TRADUÇÃO: "qualquer correspondência". Retorna se algum elemento deste fluxo satisfaz o predicado fornecido.
                         link.getRel().value().equals("delete") &&
-                                link.getHref().endsWith("/api/person/v1/1") &&
+                                link.getHref().endsWith("/api/person/v1/" + personTwo.getId()) &&
                                 link.getType().equals("DELETE")
                 )
         );
