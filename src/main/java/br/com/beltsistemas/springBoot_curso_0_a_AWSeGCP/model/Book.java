@@ -1,6 +1,7 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model;
 
 import jakarta.persistence.*;
+import org.hibernate.temporal.TemporalTableStrategy;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,6 +18,7 @@ public class Book {
     private String author;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE) //Professor utilizou essa abordagem depreciada. Contudo, recomenda-se utilizar a abordagem do Java 8 (LocalDate ou LocalDateTime) para lidar com datas.
     private Date launch_date;
 
     @Column(nullable = false, precision = 65, scale = 2)
