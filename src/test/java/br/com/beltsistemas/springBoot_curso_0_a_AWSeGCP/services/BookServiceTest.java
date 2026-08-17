@@ -1,6 +1,7 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.BookDTO;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.ObjectMapper;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Book;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.repository.BookRepository;
 import org.instancio.Instancio;
@@ -14,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
+import static org.instancio.Select.field;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -54,6 +56,20 @@ class BookServiceTest {
 
     @Test
     void create() {
+        BookDTO dtoToSaveMock = Instancio.of(BookDTO.class)
+                .ignore(field(BookDTO::getId)) // ID deve ser ignorado para criação
+                .create();
+
+        Book toSaveEntityMock = ObjectMapper.parseObject(dtoToSaveMock, Book.class);
+        toSaveEntityMock.setId(1);
+
+        when(repository.save(ObjectMapper.parseObject(dtoToSaveMock, Book.class))).thenReturn(toSaveEntityMock);
+
+        BookDTO resultDTO = service.create(dtoToSaveMock);
+
+        assertResourceData(resultDTO, toSaveEntityMock);
+
+        assertHateoasLinks(resultDTO);
     }
 
     @Test
