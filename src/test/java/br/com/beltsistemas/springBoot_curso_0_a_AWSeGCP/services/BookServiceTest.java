@@ -63,7 +63,20 @@ class BookServiceTest {
         Book toSaveEntityMock = ObjectMapper.parseObject(dtoToSaveMock, Book.class);
         toSaveEntityMock.setId(1);
 
-        when(repository.save(ObjectMapper.parseObject(dtoToSaveMock, Book.class))).thenReturn(toSaveEntityMock);
+/*      MANEIRA RECOMENDADA PELO CLAUDE.AI:
+        - when(repository.save(any(Book.class))).thenReturn(toSaveEntityMock);
+        - BookDTO resultDTO = service.create(dtoToSaveMock);
+        - ArgumentCaptor<Book> captor = ArgumentCaptor.forClass(Book.class);
+        - verify(repository).save(captor.capture());
+
+        Quando você usa any(Book.class) no when(), você está dizendo "não importa qual Book seja passado,
+        retorna isso aqui". Mas isso significa que você não sabe o que realmente foi passado — só sabe que algum Book foi passado.
+        Se o seu service faz um mapping (DTO → Entity) antes de salvar, e você quer garantir que esse mapping está correto
+        (campos certos, valores certos), o any() sozinho não te dá essa garantia.
+        O teste passaria mesmo que o mapping estivesse todo errado.
+
+        MANEIRA QUE FIZ (Objeto real no When):
+ */     when(repository.save(ObjectMapper.parseObject(dtoToSaveMock, Book.class))).thenReturn(toSaveEntityMock);
 
         BookDTO resultDTO = service.create(dtoToSaveMock);
 
@@ -74,10 +87,12 @@ class BookServiceTest {
 
     @Test
     void update() {
+        //TODO implementar método de teste do update
     }
 
     @Test
     void delete() {
+        //TODO implementar método de teste do delete
     }
 
     private void assertResourceData(BookDTO resultDto, Book entityMock) {
