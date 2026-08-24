@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+//@CrossOrigin // dessa forma qualquer domínio poderá acessar a API == NÃO RECOMENDADO!
+//@CrossOrigin(origins = "http://localhost:8080") // referenciando somente acesso ao endpoint adicionado
 @RestController
 @RequestMapping("api/person/v1")
 public class PersonController implements PersonControllerDocs {
@@ -19,12 +21,14 @@ public class PersonController implements PersonControllerDocs {
     @Autowired
     private PersonService service; // == private PersonService service = new PersonService();
 
+    @CrossOrigin() // qualquer domínio poderá acessar a API == NÃO RECOMENDADO!
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE} /* produces -> dados ENVIADOS DA a API (response) */)
     @Override
     public List<PersonDTO> findAll() {
         return service.findAll();
     }
 
+    @CrossOrigin(origins = {"http://localhost:8080", "https://www.gustavo.com.br"}) // referenciando somente acesso ao endpoint adicionado
     @GetMapping(
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE} /* produces -> dados ENVIADOS DA a API (response) */
