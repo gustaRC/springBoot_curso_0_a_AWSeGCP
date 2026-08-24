@@ -18,8 +18,17 @@ public class Book {
     private String author;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE) //Professor utilizou essa abordagem depreciada. Contudo, recomenda-se utilizar a abordagem do Java 8 (LocalDate ou LocalDateTime) para lidar com datas.
-    private Date launch_date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date launch_date; //Professor utilizou essa abordagem depreciada. Contudo, recomenda-se utilizar a abordagem do Java 8 (LocalDate ou LocalDateTime) para lidar com datas.
+/*  @Temporal existe para compensar essa limitação:
+    Como Date/Calendar não distinguem entre "só data", "só hora" ou "data e hora",
+    o JPA precisa que você diga explicitamente com @Temporal(TemporalType.DATE),
+    TIME ou TIMESTAMP como mapear a coluna no banco. Ou seja,
+    @Temporal é uma "muleta" necessária só devido à ambiguidade do Date.
+
+    Java 8 trouxe a API java.time: LocalDate, LocalTime, LocalDateTime, Instant, etc.
+    - Não precisam de @Temporal -> o JPA/Hibernate (a partir do JPA 2.2 / Hibernate 5+) já sabe mapear esses tipos automaticamente.
+*/
 
     @Column(nullable = false, precision = 65, scale = 2)
     private BigDecimal price;
