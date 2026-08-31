@@ -28,7 +28,7 @@ public class PersonController implements PersonControllerDocs {
         return service.findAll();
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://www.gustavo.com.br"}) // referenciando somente acesso ao endpoint adicionado
+    //@CrossOrigin(origins = {"http://localhost:8080", "https://www.gustavo.com.br"}) // referenciando somente acesso ao endpoint adicionado
     @GetMapping(
             value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE} /* produces -> dados ENVIADOS DA a API (response) */

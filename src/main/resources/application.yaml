@@ -1,5 +1,8 @@
 # debug: true #DEBUG Máximo da aplicação, exibe execução do Maven também
 
+cors:
+  originPatterns: http://localhost:8080,http://localhost:3000,https://www.promptuscd.com.br
+
 spring:
   application:
     name: springBoot_curso_0_a_AWSeGCP
