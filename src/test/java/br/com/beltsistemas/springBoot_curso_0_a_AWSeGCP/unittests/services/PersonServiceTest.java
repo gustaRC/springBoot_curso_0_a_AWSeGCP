@@ -1,10 +1,10 @@
-package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
+package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unittests.services;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.RequiredObjectIsNullException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.model.Person;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.repository.PersonRepository;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unitetests.mapper.mocks.MockPerson;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

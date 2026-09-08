@@ -2,14 +2,7 @@ package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.docs.BookControllerDocs;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.BookDTO;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.BookService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unittests.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

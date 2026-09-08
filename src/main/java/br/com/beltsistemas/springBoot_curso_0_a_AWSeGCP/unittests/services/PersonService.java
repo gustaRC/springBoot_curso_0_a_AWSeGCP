@@ -1,4 +1,4 @@
-package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
+package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unittests.services;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.PersonController;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import static br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.ObjectMapper.parseListObjects;
 import static br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.mapper.ObjectMapper.parseObject;

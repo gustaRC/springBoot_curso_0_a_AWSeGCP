@@ -1,0 +1,41 @@
+# debug: true #DEBUG Máximo da aplicação, exibe execução do Maven também
+
+server:
+  port: 8888
+  servlet:
+    context-path: /api/curso_0_a_awsegcp/v1
+
+# FOI REALIZADO NO MODULO SEGUINTE ANTES DESSE: PARA LIBERAR O CORS PARA O QUE ESTÁ EM OUTRA PORTA
+cors:
+  originPatterns: http://localhost:8080,http://localhost:3000,https://www.promptuscd.com.br
+
+spring:
+  application:
+    name: springBoot_curso_0_a_AWSeGCP
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # Os dados de conexão serão gerados dinamicamente pelo TestContainers, então não é necessário informar aqui.
+    #url: jdbc:mysql://localhost:3306/db_curso_0_a_awsegcp?useTimezone=true&serverTimezone=UTC
+    #username: root
+    #password: Gu021204$
+  jpa:
+    show-sql: true
+    format_sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        #dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    #root: WARN
+    br.com.beltsistemas: DEBUG #INFO é o default
+    org:
+      flywaydb: DEBUG
+
+spring-doc:
+  paths-to-match: /api/**/v1/**
+  swagger-ui:
+    use-root-path: true

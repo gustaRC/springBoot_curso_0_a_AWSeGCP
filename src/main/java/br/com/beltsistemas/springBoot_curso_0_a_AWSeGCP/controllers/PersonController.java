@@ -3,7 +3,7 @@ package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.docs.PersonControllerDocs;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.PersonDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v2.PersonDTOV2;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.PersonService;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unittests.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

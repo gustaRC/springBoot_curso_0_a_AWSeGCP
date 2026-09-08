@@ -1,7 +1,6 @@
-package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services;
+package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unittests.services;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.BookController;
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers.PersonController;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.data.dto.v1.BookDTO;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.RequiredObjectIsNullException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFoundException;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;

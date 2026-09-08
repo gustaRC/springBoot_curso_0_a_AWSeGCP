@@ -1,6 +1,6 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.controllers;
 
-import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.services.MathService;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.unittests.services.MathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
