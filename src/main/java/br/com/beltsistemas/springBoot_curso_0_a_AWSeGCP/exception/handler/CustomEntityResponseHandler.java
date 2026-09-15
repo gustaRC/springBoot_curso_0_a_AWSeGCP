@@ -1,6 +1,7 @@
 package br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.handler;
 
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ExceptionResponse;
+import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.InvalidJwtAuthenticationException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.RequiredObjectIsNullException;
 import br.com.beltsistemas.springBoot_curso_0_a_AWSeGCP.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -48,5 +49,16 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
         );
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST); // retorno do objeto criado + status de retorno (status 404)
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class) // Trata a exceção InvalidJwtAuthenticationException (toda a vez que essa classe for chamada irá cair nesse handler)
+    public final ResponseEntity<ExceptionResponse> handleInvalidJwtAuthenticationException(Exception ex, WebRequest request) {
+        ExceptionResponse response = new ExceptionResponse( // criação do objeto que será retornado
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN); // retorno do objeto criado + status de retorno (status 404)
     }
 }
