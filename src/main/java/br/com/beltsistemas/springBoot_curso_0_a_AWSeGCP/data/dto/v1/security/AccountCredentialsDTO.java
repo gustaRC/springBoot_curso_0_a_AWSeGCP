@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class AccountCredentialsDTO {
-// DTO que será enviado pelo usuário -> iremos processar os dados -> retornar uma resposta (outro DTO)
+// DTO que será enviado pelo usuário -> iremos processar os dados -> retornar uma resposta (TokenDTO)
 
     private static final long serialVersionUID = 1L;
 

@@ -3,6 +3,12 @@
 cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://www.promptuscd.com.br
 
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-lenght: 3600000
+
 spring:
   application:
     name: springBoot_curso_0_a_AWSeGCP
