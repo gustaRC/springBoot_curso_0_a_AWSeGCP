@@ -29,7 +29,7 @@ public class User implements UserDetails, Serializable {
     private Long id;
 
     @Column(name = "user_name", unique = true) // campo unico, ou seja, não pode repetir
-    private String username;
+    private String userName;
 
     @Column(name = "full_name")
     private String fullName;
@@ -74,7 +74,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.userName;
     }
 
     @Override
