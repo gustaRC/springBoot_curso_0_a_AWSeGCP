@@ -41,6 +41,4 @@ public class SpringBootCurso0AAwSeGcpApplication {
 		System.out.println("Senha 'admin123': " + passwordEncoder.encode("admin123"));
 		System.out.println("Senha 'biricubicu': " + passwordEncoder.encode("biricubicu"));
 	}
-
-
 }
